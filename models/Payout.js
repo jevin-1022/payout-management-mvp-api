@@ -1,0 +1,49 @@
+const mongoose = require("mongoose");
+
+const PayoutSchema = new mongoose.Schema(
+  {
+    vendor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vendor",
+      required: true,
+    },
+
+    amount: {
+      type: Number,
+      required: true,
+    },
+
+    mode: {
+      type: String,
+      enum: ["UPI", "IMPS", "NEFT"],
+      required: true,
+    },
+
+    note: {
+      type: String,
+      default: "",
+    },
+
+    status: {
+      type: String,
+      enum: ["Draft", "Submitted", "Approved", "Rejected"],
+      default: "Draft",
+    },
+
+    decision_reason: {
+      type: String,
+      default: null,
+    },
+
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  {
+    timestamps: true, 
+  }
+);
+
+module.exports = mongoose.model("Payout", PayoutSchema);
