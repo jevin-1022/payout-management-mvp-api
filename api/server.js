@@ -18,6 +18,8 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/vendors", require("./routes/vendor"));
 app.use("/api/payouts", require("./routes/payout"));
 
-app.listen(process.env.PORT, () => {
-  console.log(`🚀 Server running on port ${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//   console.log(`🚀 Server running on port ${process.env.PORT}`);
+// });
+
+module.exports = app;
